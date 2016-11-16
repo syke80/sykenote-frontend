@@ -5,10 +5,14 @@ import { routing } from './app.routing';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
-import { NotelistComponent }  from './notelist/notelist.component';
-import { NoteComponent }  from './note.component';
-import { HelpComponent }  from './help.component';
-import { LoginComponent }  from './login.component';
+import { AppMenuComponent } from './appMenu/appMenu.component';
+import { NotelistPageComponent }  from './notelistPage/notelistPage.component';
+import { NotePageComponent }  from './notePage/notePage.component';
+import { HelpPageComponent }  from './helpPage/helpPage.component';
+import { LoginPageComponent } from './loginPage/loginPage.component';
+import { LoginFormComponent }  from './loginPage/loginForm/loginForm.component';
+import { AddNoteComponent }  from './addNote/addNote.component';
+import { RegistrationFormComponent } from './loginPage/registrationForm/registrationForm.component';
 import { NoteService } from './note.service';
 import { ConfigService } from './config.service';
 import { AuthenticationService } from './authentication.service';
@@ -22,10 +26,14 @@ import { AuthenticationService } from './authentication.service';
   ],
   declarations: [
       AppComponent,
-      NotelistComponent,
-      NoteComponent,
-      HelpComponent,
-      LoginComponent
+      AppMenuComponent,
+      NotelistPageComponent,
+      NotePageComponent,
+      HelpPageComponent,
+      LoginPageComponent,
+      LoginFormComponent,
+      AddNoteComponent,
+      RegistrationFormComponent
   ],
   providers: [
       NoteService,

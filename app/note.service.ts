@@ -5,7 +5,10 @@ import { ConfigService } from './config.service';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Note }      from './common/note';
+import { Note } from './common/note';
+import { NoteListResponse } from './common/noteListResponse';
+import { NoteResponse } from './common/noteResponse';
+import { AddNoteRequestModel } from './common/addNoteRequest.model';
 
 @Injectable()
 
@@ -40,13 +43,7 @@ export class NoteService {
         return this.headers;
     }
 
-    getNotes(): Promise<Note[]> {
-/*
-        return this.http.get(this.noteUrl)
-            .toPromise()
-            .then(response => response.json() as Note[])
-            .catch(this.handleError);
-*/
+    getNotes(): Promise<NoteListResponse> {
         return this.http.get(this.getServiceEndpoint(), { headers: this.getHeaders() })
             .toPromise()
             .then( function(response) {
@@ -64,21 +61,22 @@ export class NoteService {
             })
             .catch(this.handleError);
     }
-/*
+
+    create(data: AddNoteRequestModel): Promise<NoteResponse> {
+        return this.http
+            .post(this.getServiceEndpoint(), data, { headers: this.headers} )
+            .toPromise()
+            .then(res => res.json().data)
+            .catch(this.handleError);
+    }
+
+    /*
     update(hero: Hero): Promise<Hero> {
         const url = `${this.heroesUrl}/${hero.id}`;
         return this.http
             .put(url, JSON.stringify(hero), { headers: this.headers} )
             .toPromise()
             .then(() => hero)
-            .catch(this.handleError);
-    }
-
-    create(name: String): Promise<Hero> {
-        return this.http
-            .post(this.heroesUrl, JSON.stringify({name: name}), { headers: this.headers} )
-            .toPromise()
-            .then(res => res.json().data)
             .catch(this.handleError);
     }
 

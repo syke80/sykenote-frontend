@@ -1,0 +1,5 @@
+<h2>Add note</h2>
+<form (submit)="onSubmitAddNoteForm($event)">
+    <input [(ngModel)]="model.title" name="title" placeholder="Title of new note">
+    <button type="submit">Login</button>
+</form>

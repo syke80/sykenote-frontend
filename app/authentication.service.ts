@@ -9,6 +9,7 @@ import { LoginResponse } from './loginresponse';
 
 export class AuthenticationService {
     private authenticationUrl = 'http://api.sykenote.dev/api/login';
+    private registrationUrl = 'http://api.sykenote.dev/api/user';
 
     token: string;
 
@@ -40,22 +41,33 @@ export class AuthenticationService {
         return new Promise((resolve, reject) => {
             this.getTokenFromServer(email, password).then((response) => {
                 if (response) {
-                    console.log('response', this, response);
                     this.token = response.token;
                     localStorage.setItem('token', response.token);
-                    console.log('resolve sent');
                     resolve(true);
                 } else {
-                    console.log('reject sent');
+                    // TODO: redirect to main page
                     reject(false);
                 }
             });
         });
     }
 
+    register(email: string, password: string): Promise<boolean> {
+        var parameters = {
+            email: email,
+            password: password
+        }
+        return this.http.post(this.registrationUrl, parameters)
+            .toPromise()
+            .then( function(response) {
+                return response.json();
+            })
+            .catch(this.handleHttpError);
+    }
+
     handleHttpError(error): boolean {
         console.log('handle http error @ authentication service', error);
-        if (error.status == 401) {
+        if (error.status == 422) {
             return false;
         }
         console.log('Some error occured while communicating with endpoint.', error);

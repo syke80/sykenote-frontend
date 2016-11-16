@@ -1,9 +1,10 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NoteComponent }   from './note.component';
-import { HelpComponent }   from './help.component';
-import { LoginComponent } from './login.component';
+import { NotePageComponent }   from './notePage/notePage.component';
+import { NotelistPageComponent }   from './notelistPage/notelistPage.component';
+import { HelpPageComponent }   from './helpPage/helpPage.component';
+import { LoginPageComponent } from './loginPage/loginPage.component';
 
 const appRoutes: Routes = [
     {
@@ -13,15 +14,19 @@ const appRoutes: Routes = [
     },
     {
         path: 'help',
-        component: HelpComponent
+        component: HelpPageComponent
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginPageComponent
     },
     {
         path: 'note/:id',
-        component: NoteComponent
+        component: NotePageComponent
+    },
+    {
+        path: 'notelist',
+        component: NotelistPageComponent
     }
 ];
 

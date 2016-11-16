@@ -4,22 +4,22 @@ import { FormsModule } from '@angular/forms';
 
 import 'rxjs/add/operator/toPromise';
 
-import { LoginModel } from './loginmodel';
-import { AuthenticationService } from './authentication.service';
+import { LoginModel } from '../../login.model';
+import { AuthenticationService } from '../../authentication.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'login',
-    templateUrl: 'login.component.html'
+    selector: 'loginForm',
+    templateUrl: 'loginForm.component.html'
 })
 
-export class LoginComponent {
+export class LoginFormComponent {
+    redirectPage: string;
+
     model: LoginModel = {
         email: '',
         password: ''
     }
-
-    redirectPage: string;
 
     constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
@@ -30,14 +30,34 @@ export class LoginComponent {
         }
     }
 
-    doLogin(event) {
-        console.log("do login");
+    doLogin() {
         this.authenticationService.login(this.model.email, this.model.password).then(() => {
             this.redirect();
         }).catch( function(error) {
             console.log('dologin: not resolved', error);
-           // alert('Invalid email address or password.');
+            // TODO: error handling in a popup
+            // alert('Invalid email address or password.');
         });
+    }
+
+    onSubmitLoginForm(event) {
+        this.doLogin();
+        event.preventDefault();
+    }
+
+    doRegister() {
+        this.authenticationService.register(this.model.email, this.model.password).then(() => {
+            this.doLogin();
+            this.redirect();
+        }).catch( function(error) {
+            console.log('doregister: not resolved', error);
+            // TODO: error handling in a popup
+            // alert('Invalid email address or password.');
+        });
+    }
+
+    onSubmitRegisterForm(event) {
+        this.doRegister();
         event.preventDefault();
     }
 

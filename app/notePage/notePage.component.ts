@@ -2,18 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { NoteService } from './note.service';
-import { AuthenticationService } from './authentication.service';
+import { NoteService } from '../note.service';
+import { AuthenticationService } from '../authentication.service';
 
-import { Note } from './common/note';
+import { Note } from '../common/note';
 
 @Component({
     moduleId: module.id,
-    selector: 'note',
-    templateUrl: 'note.component.html'
+    selector: 'notePage',
+    templateUrl: 'notePage.component.html'
 })
 
-export class NoteComponent {
+export class NotePageComponent {
     @Input() note: Note = {
         title: '',
         content: '',
@@ -25,7 +25,6 @@ export class NoteComponent {
         private authenticationService: AuthenticationService,
         private route: ActivatedRoute,
         private router: Router,
-        private location: Location
     ) {}
     
     ngOnInit(): void {
@@ -38,7 +37,6 @@ export class NoteComponent {
     }
 
     handleHttpError(error): void {
-        console.log('handle http error @ note component', error);
         if (error.status == 400 || error.status == 401) {
             this.authenticationService.deleteToken();
             this.router.navigate(['login']);
