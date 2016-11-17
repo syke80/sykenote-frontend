@@ -1,0 +1,9 @@
+<h1>Registration</h1>
+<form (submit)="onSubmitRegistrationForm($event)">
+    <input [(ngModel)]="model.email" name="email" type="email" placeholder="Your email">
+    <input [(ngModel)]="model.password" name="password" type="password" placeholder="Your password">
+    <input [(ngModel)]="model.confirmPassword" name="confirmPassword" type="password" placeholder="Your password again">
+    <input [(ngModel)]="model.test.value" name="test" type="text" placeholder="Test">
+    <button type="submit">Register</button>
+</form>
+

@@ -5,17 +5,17 @@ import { routing } from './app.routing';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
-import { AppMenuComponent } from './appMenu/appMenu.component';
-import { NotelistPageComponent }  from './notelistPage/notelistPage.component';
-import { NotePageComponent }  from './notePage/notePage.component';
-import { HelpPageComponent }  from './helpPage/helpPage.component';
-import { LoginPageComponent } from './loginPage/loginPage.component';
-import { LoginFormComponent }  from './loginPage/loginForm/loginForm.component';
-import { AddNoteComponent }  from './addNote/addNote.component';
-import { RegistrationFormComponent } from './loginPage/registrationForm/registrationForm.component';
-import { NoteService } from './note.service';
-import { ConfigService } from './config.service';
-import { AuthenticationService } from './authentication.service';
+import { AppMenuComponent } from './components/appMenu/appMenu.component';
+import { NotelistPageComponent }  from './components/notelistPage/notelistPage.component';
+import { NotePageComponent }  from './components/notePage/notePage.component';
+import { HelpPageComponent }  from './components/helpPage/helpPage.component';
+import { LoginPageComponent } from './components/loginPage/loginPage.component';
+import { LoginFormComponent }  from './components/loginPage/loginForm/loginForm.component';
+import { AddNoteComponent }  from './components/addNote/addNote.component';
+import { RegistrationFormComponent } from './components/loginPage/registrationForm/registrationForm.component';
+import { NoteService } from './services/note.service';
+import { ConfigService } from './services/config.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   imports:      [

@@ -2,13 +2,14 @@
   "name": "angular-quickstart",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && npm run copystatic && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
-    "copystatic": "copyfiles -u 1 app/**/*.html app/**/*.css dist"
+    "copystatic": "copyfiles \"app/**/*.html\" \"app/**/*.css\" \"dist\"",
+    "copytest": "copyfiles *.json test"
   },
   "license": "ISC",
   "dependencies": {
@@ -33,7 +34,6 @@
     "concurrently": "^3.0.0",
     "copyfiles": "^1.0.0",
     "lite-server": "^2.2.2",
-    "tslint": "^3.15.1",
     "typescript": "^2.0.3",
     "typings": "^1.4.0"
   }

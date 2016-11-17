@@ -1,10 +1,10 @@
-import { ModuleWithProviders }  from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NotePageComponent }   from './notePage/notePage.component';
-import { NotelistPageComponent }   from './notelistPage/notelistPage.component';
-import { HelpPageComponent }   from './helpPage/helpPage.component';
-import { LoginPageComponent } from './loginPage/loginPage.component';
+import { NotePageComponent } from './components/notePage/notePage.component';
+import { NotelistPageComponent } from './components/notelistPage/notelistPage.component';
+import { HelpPageComponent } from './components/helpPage/helpPage.component';
+import { LoginPageComponent } from './components/loginPage/loginPage.component';
 
 const appRoutes: Routes = [
     {
