@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
     private config = {
         apiEndpoint: 'http://api.sykenote.dev/api'
-    }
+    };
 
     public setOption(option, value) {
         this.config[option] = value;

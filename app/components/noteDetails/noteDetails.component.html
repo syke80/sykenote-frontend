@@ -1,0 +1,10 @@
+<div *ngIf="!!note">
+    <form (submit)="onSubmitNoteDetailsForm($event)">
+        <input [(ngModel)]="note.title" name="title">
+        <div>
+            <textarea [(ngModel)]="note.content" name="content"></textarea>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+
+</div>

@@ -1,73 +1,87 @@
-import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import { AuthenticationService } from './authentication.service';
-import { ConfigService } from './config.service';
-
+import { Injectable, EventEmitter } from '@angular/core';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-
+import { ConfigService } from './config.service';
 import { NoteModel } from '../models/note.model';
 import { NoteListResponseModel } from '../models/noteListResponse.model';
 import { GetNoteResponseModel } from '../models/getNoteResponse.model';
 import { AddNoteRequestModel } from '../models/addNoteRequest.model';
 import { AddNoteResponseModel } from '../models/addNoteResponse.model';
+import { NoteApiErrorModel } from '../models/noteApiError.model';
+import { UpdateNoteResponseModel } from '../models/updateNoteResponse.model';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 
 export class NoteService {
-    private serviceEndpoint;
-    private headers: Headers;
-    private endpointPostfix: String = '/notes'
+    public itemCreated$: EventEmitter<NoteModel>;
+    private serviceEndpoint: string;
+    private endpointPostfix: String = '/notes';
 
-    constructor(private authenticationService: AuthenticationService, private http: Http, private configService: ConfigService ) { }
+    constructor(private authenticationService: AuthenticationService, private http: Http, private configService: ConfigService ) {
+        this.itemCreated$ = new EventEmitter();
+    }
 
     private getServiceEndpoint(): string {
         if (!this.serviceEndpoint) {
             this.serviceEndpoint = this.configService.getOption('apiEndpoint') + this.endpointPostfix;
         }
+
         return this.serviceEndpoint;
     }
 
-    private createHeaders() {
+    private getHeaders(): Headers {
         return new Headers({
             'Content-Type': 'application/json',
             'Authorization': 'Bearer:' + this.authenticationService.getToken()
         });
     }
 
-    private getHeaders() {
-        if (this.headers) {
-            return this.headers;
-        }
-
-        this.headers = this.createHeaders();
-
-        return this.headers;
-    }
-
     getNotes(): Promise<NoteListResponseModel> {
         return this.http.get(this.getServiceEndpoint(), { headers: this.getHeaders() })
             .toPromise()
-            .then( function(response) {
+            .then( function(response: Response): NoteListResponseModel {
                 return response.json();
             })
             .catch(this.handleError);
     }
 
-    getNote(id): Promise<GetNoteResponseModel> {
-        var currentNoteUrl = this.getServiceEndpoint() + '/' + id;
+    getNote(id: number): Promise<GetNoteResponseModel> {
+        let currentNoteUrl: string = this.getServiceEndpoint() + '/' + id;
+
         return this.http.get(currentNoteUrl, { headers: this.getHeaders() })
             .toPromise()
-            .then( function(response) {
+            .then( function(response: Response): GetNoteResponseModel {
                 return response.json();
             })
             .catch(this.handleError);
     }
 
     create(data: AddNoteRequestModel): Promise<AddNoteResponseModel> {
+        let options: RequestOptions = new RequestOptions({ headers: this.getHeaders() });
+
         return this.http
-            .post(this.getServiceEndpoint(), data, { headers: this.headers} )
+            .post(this.getServiceEndpoint(), data, options)
             .toPromise()
-            .then(res => res.json().data)
+            .then((response: Response) => {
+                let responseContent: AddNoteResponseModel = response.json();
+                this.itemCreated$.emit(responseContent.note);
+                return responseContent;
+            })
+            .catch(this.handleError);
+    }
+
+    update(data: NoteModel): Promise<UpdateNoteResponseModel> {
+        let currentNoteUrl: string = this.getServiceEndpoint() + '/' + data.id,
+            options: RequestOptions = new RequestOptions({ headers: this.getHeaders() });
+
+        return this.http
+            .put(currentNoteUrl, data, options)
+            .toPromise()
+            .then((response: Response) => {
+                let responseContent: UpdateNoteResponseModel = response.json();
+                return responseContent;
+            })
             .catch(this.handleError);
     }
 
@@ -89,19 +103,10 @@ export class NoteService {
             .catch(this.handleError);
     }
 */
-    private handleError(error: any): Promise<any> {
-        console.log('handle http error @ note service', error);
-        return Promise.reject(error.message || error);
+    // TODO: use ApiResponse (abstract class: msg, error) instead of Any
+    // TODO: response must be string instead of any
+    private handleError(error: Response): Promise<any> {
+        let data: NoteApiErrorModel = error.json();
+        return Promise.reject(data.error || data.msg || error);
     }
-/*
-    getHeroesSlowly(): Promise<Hero[]> {
-        return new Promise<Hero[]>(resolve =>
-            setTimeout(resolve, 2000))
-            .then(() => this.getHeroes());
-    }
-
-    getHeroes(): Promise<Hero[]> {
-        return Promise.resolve(HEROES);
-    }
-*/
 }

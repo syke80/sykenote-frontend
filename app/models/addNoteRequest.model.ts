@@ -1,3 +1,3 @@
 export class AddNoteRequestModel {
-    title: string
+    title: string;
 }

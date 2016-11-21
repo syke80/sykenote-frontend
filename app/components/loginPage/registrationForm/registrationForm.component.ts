@@ -27,18 +27,18 @@ export class RegistrationFormComponent {
         password: '22',
         confirmPassword: '333',
         test: new FormControl('', Validators.required)
-    }
+    };
 
     constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
-    private redirect() {
+    private redirect(): void {
         if (!this.redirectPage) {
             console.log('redirecting');
             this.router.navigateByUrl('');
         }
     }
 
-    doLogin() {
+    doLogin(): void {
         this.authenticationService.login(this.model.email, this.model.password).then(() => {
             this.redirect();
         }).catch( function(error) {
@@ -49,7 +49,7 @@ export class RegistrationFormComponent {
         });
     }
 
-    onSubmitRegistrationForm(event) {
+    onSubmitRegistrationForm(event: Event): void {
         this.authenticationService.register(this.model.email, this.model.password).then(() => {
             console.log('successful registration');
             this.doLogin();

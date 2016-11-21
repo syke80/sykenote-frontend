@@ -1,0 +1,4 @@
+<add-note></add-note>
+<ul *ngIf="notes !== []">
+    <li *ngFor="let note of notes"><a routerLink="/note/{{note.id}}">{{note.title}}</a></li>
+</ul>

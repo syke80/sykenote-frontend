@@ -11,7 +11,6 @@
         ],
         "no-duplicate-variable": true,
         "no-eval": true,
-        "no-internal-module": true,
         "no-trailing-whitespace": true,
         "no-unsafe-finally": true,
         "no-var-keyword": true,
@@ -22,7 +21,7 @@
         ],
         "quotemark": [
             true,
-            "double"
+            "single"
         ],
         "semicolon": [
             true,
@@ -32,6 +31,7 @@
             true,
             "allow-null-check"
         ],
+        "typedef": [true, "call-signature", "arrow-call-signature", "parameter", "arrow-parameter", "property-declaration", "variable-declaration", "member-variable-declaration"],
         "typedef-whitespace": [
             true,
             {

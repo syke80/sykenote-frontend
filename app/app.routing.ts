@@ -2,14 +2,13 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { NotePageComponent } from './components/notePage/notePage.component';
-import { NotelistPageComponent } from './components/notelistPage/notelistPage.component';
 import { HelpPageComponent } from './components/helpPage/helpPage.component';
 import { LoginPageComponent } from './components/loginPage/loginPage.component';
 
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: '/help',
+        redirectTo: '/note',
         pathMatch: 'full'
     },
     {
@@ -25,8 +24,8 @@ const appRoutes: Routes = [
         component: NotePageComponent
     },
     {
-        path: 'notelist',
-        component: NotelistPageComponent
+        path: 'note',
+        component: NotePageComponent
     }
 ];
 
