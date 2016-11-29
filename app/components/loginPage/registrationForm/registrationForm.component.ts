@@ -15,7 +15,7 @@ class RegistrationFormModel extends RegistrationRequestModel {
 
 @Component({
     moduleId: module.id,
-    selector: 'registrationForm',
+    selector: 'registration-form',
     templateUrl: 'registrationForm.component.html'
 })
 

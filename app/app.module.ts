@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 import { FormsModule } from '@angular/forms';
 
@@ -20,7 +21,8 @@ import { ConfigService } from './services/config.service';
 import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
-  imports:      [
+  imports: [
+      NgbModule.forRoot(),
       BrowserModule,
       HttpModule,
       routing,

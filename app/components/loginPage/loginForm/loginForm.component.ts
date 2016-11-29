@@ -9,7 +9,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
 
 @Component({
     moduleId: module.id,
-    selector: 'loginForm',
+    selector: 'login-form',
     templateUrl: 'loginForm.component.html'
 })
 

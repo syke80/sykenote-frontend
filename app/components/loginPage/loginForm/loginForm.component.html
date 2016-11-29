@@ -1,6 +1,14 @@
-<h1>Login</h1>
+<h2>Login</h2>
 <form (submit)="onSubmitLoginForm($event)">
-    <input [(ngModel)]="model.email" name="email" type="email" placeholder="Your email">
-    <input [(ngModel)]="model.password" name="password" type="password" placeholder="Your password">
-    <button type="submit">Login</button>
+    <div class="form-group col-xs-12 col-md-6">
+        <label for="login-email">Your email address</label>
+        <input [(ngModel)]="model.email" class="form-control form-control-lg" name="email" type="email" id="login-email" placeholder="example@example.com">
+    </div>
+    <div class="form-group col-xs-12 col-md-6">
+        <label for="login-password">Password</label>
+        <input [(ngModel)]="model.password" class="form-control form-control-lg" name="password" type="password" id="login-password" placeholder="Your password">
+    </div>
+    <div class="btn-group col-xs-12">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+    </div>
 </form>
