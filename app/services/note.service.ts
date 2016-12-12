@@ -9,6 +9,7 @@ import { AddNoteRequestModel } from '../models/addNoteRequest.model';
 import { AddNoteResponseModel } from '../models/addNoteResponse.model';
 import { NoteApiErrorModel } from '../models/noteApiError.model';
 import { UpdateNoteResponseModel } from '../models/updateNoteResponse.model';
+import { DeleteNoteResponseModel } from '../models/deleteNoteResponse.model';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable()
@@ -85,24 +86,20 @@ export class NoteService {
             .catch(this.handleError);
     }
 
-    /*
-    update(hero: Hero): Promise<Hero> {
-        const url = `${this.heroesUrl}/${hero.id}`;
+    delete(noteId: number): Promise<DeleteNoteResponseModel> {
+        let currentNoteUrl: string = this.getServiceEndpoint() + '/' + noteId,
+            options: RequestOptions = new RequestOptions({ headers: this.getHeaders() });
+
         return this.http
-            .put(url, JSON.stringify(hero), { headers: this.headers} )
+            .delete(currentNoteUrl, options)
             .toPromise()
-            .then(() => hero)
+            .then((response: Response) => {
+                let responseContent: DeleteNoteResponseModel = response.json();
+                return responseContent;
+            })
             .catch(this.handleError);
     }
 
-    delete(hero: Hero): Promise<Hero> {
-        return this.http
-            .delete(heroesUrl, JSON.stringify(hero), { headers: this.headers} )
-            .toPromise()
-            .then(() => null)
-            .catch(this.handleError);
-    }
-*/
     // TODO: use ApiResponse (abstract class: msg, error) instead of Any
     // TODO: response must be string instead of any
     private handleError(error: Response): Promise<any> {

@@ -18,7 +18,6 @@ export class NoteDetailsComponent {
     constructor(
         private noteService: NoteService,
         private authenticationService: AuthenticationService,
-        private route: ActivatedRoute,
         private router: Router
     ) {}
 
@@ -40,6 +39,10 @@ export class NoteDetailsComponent {
             .catch( error => {
                 this.handleHttpError.call(this, error);
             });
+    }
+
+    onTextContentChange(): void {
+        alert('text content has been changed');
     }
 
     ngOnChanges(): void {

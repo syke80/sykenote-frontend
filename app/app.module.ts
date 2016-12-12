@@ -12,6 +12,8 @@ import { NotePageComponent }  from './components/notePage/notePage.component';
 import { HelpPageComponent }  from './components/helpPage/helpPage.component';
 import { LoginPageComponent } from './components/loginPage/loginPage.component';
 import { LoginFormComponent }  from './components/loginPage/loginForm/loginForm.component';
+import { AlertModalComponent } from './components/alertModal/alertModal.component';
+import { ConfirmationModalComponent } from './components/confirmationModal/confirmationModal.component';
 import { AddNoteComponent }  from './components/addNote/addNote.component';
 import { UserInfoComponent }  from './components/userInfo/userInfo.component';
 import { NoteDetailsComponent }  from './components/noteDetails/noteDetails.component';
@@ -36,10 +38,16 @@ import { AuthenticationService } from './services/authentication.service';
       HelpPageComponent,
       LoginPageComponent,
       LoginFormComponent,
+      AlertModalComponent,
+      ConfirmationModalComponent,
       AddNoteComponent,
       UserInfoComponent,
       NoteDetailsComponent,
       RegistrationFormComponent
+  ],
+  entryComponents: [
+      AlertModalComponent,
+      ConfirmationModalComponent
   ],
   providers: [
       NoteService,

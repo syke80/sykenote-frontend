@@ -1,6 +1,22 @@
-body{
 registration-form,
 login-form {
   margin-bottom: 1em;
 }
+
+note-page {
+  .back-link {
+    display: none;
+  }
+  .note-selected {
+    .back-link {
+      display: block;
+    }
+    note-list {
+      display: none;
+    }
+  }
+}
+
+.note-details__content {
+    height: 10em;
 }

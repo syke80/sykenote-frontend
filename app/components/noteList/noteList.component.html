@@ -1,4 +1,7 @@
 <add-note></add-note>
-<ul *ngIf="notes !== []">
-    <li *ngFor="let note of notes"><a routerLink="/note/{{note.id}}">{{note.title}}</a></li>
+<ul class="list-group" *ngIf="notes !== []">
+    <li class="list-group-item" [ngClass]="{active: note.id == selectedNoteId}" *ngFor="let note of notes" (click)="onClickItem(note.id)">
+        <button class="btn btn-secondary btn-sm float-xs-right" (click)="onClickDeleteButton($event, note.id, note.title)">Del</button>
+        <a routerLink="/note/{{note.id}}">{{note.title}}</a>
+    </li>
 </ul>

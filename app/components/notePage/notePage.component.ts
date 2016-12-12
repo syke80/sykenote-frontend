@@ -8,18 +8,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 
 export class NotePageComponent {
-    selectedNoteId: number;
+    selectedNoteId: number = 0;
 
     constructor(
         private activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
-/*
-        this.activatedRoute.params.forEach((params: Params) => {
-            this.selectedNoteId = params['id'];
-        });
-  */
         this.activatedRoute.params.subscribe((params: Params) => {
             let id: number = +params['id'];
             this.selectedNoteId = id;
