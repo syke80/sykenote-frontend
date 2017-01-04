@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && npm run copystatic && npm run scss-compile-styles && concurrently \"tsc -w\" \"lite-server\" \"npm run watch\" ",
+    "compile": "tsc && npm run copystatic && npm run scss-compile-styles",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
