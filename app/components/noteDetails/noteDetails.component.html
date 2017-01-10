@@ -1,13 +1,14 @@
 <div *ngIf="!!note">
     <form (submit)="onSubmitNoteDetailsForm($event)">
         <div class="form-group">
-            <input class="form-control"  [(ngModel)]="note.title" name="title">
+            <input class="form-control" [(ngModel)]="note.title" name="title">
         </div>
         <div class="form-group">
-            <textarea style="resize: both;" class="form-control note-details__content" [(ngModel)]="note.content" name="content"></textarea>
+            <div contenteditable="true" (keyup)="onKeyPressedInContent($event)" [innerHTML]="getContentHtml()"></div>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary btn-lg" type="submit">Save</button>
+            <button [hidden]="!isDirty" class="btn btn-primary btn-lg" type="submit">Save</button>
+            <button [hidden]="isDirty" class="btn btn-primary btn-lg" type="submit" disabled>Document is saved</button>
         </div>
     </form>
 </div>
