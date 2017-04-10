@@ -90,7 +90,7 @@ export class NoteListComponent {
             .catch((error: any) => { this.handleError.call(this, error); });
     }
 
-    handleError(error: string): void {
+    private handleError(error: string): void {
         if (error === TOKEN_EXPIRED || error === TOKEN_INVALID || error === TOKEN_MISSING) {
             this.authenticationService.logout();
             this.router.navigate(['login']);

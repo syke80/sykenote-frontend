@@ -25,7 +25,7 @@ export class NoteService {
 
     private getServiceEndpoint(): string {
         if (!this.serviceEndpoint) {
-            this.serviceEndpoint = this.configService.getOption('apiEndpoint') + this.endpointPostfix;
+            this.serviceEndpoint = this.configService.getOption('apiUrl') + this.endpointPostfix;
         }
 
         return this.serviceEndpoint;
