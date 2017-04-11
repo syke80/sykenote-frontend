@@ -1,4 +1,4 @@
-<add-note></add-note>
+<app-add-note></app-add-note>
 <ul class="list-group" *ngIf="notes !== []">
     <li class="list-group-item" [ngClass]="{active: note.id == selectedNoteId}" *ngFor="let note of notes" (click)="onClickItem(note.id)">
         <button class="btn btn-secondary btn-sm float-xs-right" (click)="onClickDeleteButton($event, note.id, note.title)">Del</button>

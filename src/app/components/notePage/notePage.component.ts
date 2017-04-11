@@ -3,11 +3,10 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     moduleId: module.id,
-    selector: 'note-page',
     templateUrl: 'notePage.component.html'
 })
 
-export class NotePageComponent {
+export class NotePageComponent implements OnInit {
     selectedNoteId: number = 0;
 
     constructor(

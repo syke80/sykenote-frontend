@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,11 +13,11 @@ const INVALID_CREDENTIALS_ERROR_MESSAGE: string = 'Invalid credentials';
 
 @Component({
     moduleId: module.id,
-    selector: 'login-form',
+    selector: 'app-login-form',
     templateUrl: 'loginForm.component.html'
 })
 
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
     redirectPage: string;
 
     model: LoginRequestModel = {

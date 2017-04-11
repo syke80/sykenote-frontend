@@ -5,7 +5,7 @@ import { NoteService } from '../../services/note.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'add-note',
+    selector: 'app-add-note',
     templateUrl: 'addNote.component.html'
 })
 

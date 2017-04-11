@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NoteModel } from '../../models/note.model';
 import { NoteListResponseModel } from '../../models/noteListResponse.model';
@@ -16,11 +16,11 @@ const DELETE_CONFIRMATION_MESSAGE: string = 'Are you sure to delete "' + TITLE_K
 
 @Component({
     moduleId: module.id,
-    selector: 'note-list',
+    selector: 'app-note-list',
     templateUrl: 'noteList.component.html'
 })
 
-export class NoteListComponent {
+export class NoteListComponent implements OnInit {
     @Input() selectedNoteId: number;
     notes: NoteModel[] = [];
 

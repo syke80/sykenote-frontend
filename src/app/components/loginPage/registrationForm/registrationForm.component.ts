@@ -19,7 +19,7 @@ const ALREADY_REGISTERED_ERROR_MESSAGE: string = 'The email address is already r
 
 @Component({
     moduleId: module.id,
-    selector: 'registration-form',
+    selector: 'app-registration-form',
     templateUrl: 'registrationForm.component.html'
 })
 

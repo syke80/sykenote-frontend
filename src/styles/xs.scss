@@ -1,9 +1,9 @@
-registration-form,
-login-form {
+app-registration-form,
+app-login-form {
   margin-bottom: 1em;
 }
 
-note-page {
+app-note-page {
   .back-link {
     display: none;
   }
@@ -11,7 +11,7 @@ note-page {
     .back-link {
       display: block;
     }
-    note-list {
+    app-note-list {
       display: none;
     }
   }

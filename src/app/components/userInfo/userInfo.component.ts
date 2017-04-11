@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserDetailsModel } from '../../models/userDetails.model';
 
 @Component({
     moduleId: module.id,
-    selector: 'user-info',
+    selector: 'app-user-info',
     templateUrl: 'userInfo.component.html'
 })
 
-export class UserInfoComponent {
+export class UserInfoComponent implements OnInit {
     userInfo: UserDetailsModel;
 
     constructor(private authenticationService: AuthenticationService) {

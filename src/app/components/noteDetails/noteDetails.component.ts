@@ -1,4 +1,4 @@
-import { Component, Input, Pipe, PipeTransform } from '@angular/core';
+import { Component, Input, Pipe, PipeTransform, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { NoteModel } from '../../models/note.model';
 import { GetNoteResponseModel } from '../../models/getNoteResponse.model';
@@ -8,19 +8,17 @@ import { AuthenticationService } from '../../services/authentication.service';
 @Pipe({name: 'textToHtml'})
 export class TextToHtml implements PipeTransform {
     transform(content: string): string {
-        let updatedContent: string = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
-
-        return updatedContent;
+        return content.replace(/(?:\r\n|\r|\n)/g, '<br />');
     }
 }
 
 @Component({
     moduleId: module.id,
-    selector: 'note-details',
+    selector: 'app-note-details',
     templateUrl: 'noteDetails.component.html'
 })
 
-export class NoteDetailsComponent {
+export class NoteDetailsComponent implements OnChanges {
     @Input() id: number;
     note: NoteModel;
     actualContent: string;
@@ -53,8 +51,7 @@ export class NoteDetailsComponent {
     getContentHtml(): string {
         if (this.note) {
             return this.note.content.replace(/(?:\r\n|\r|\n)/g, '<br />');
-        }
-        else {
+        } else {
             return '';
         }
     }
